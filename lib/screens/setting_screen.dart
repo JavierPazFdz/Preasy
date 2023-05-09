@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:preasy_javipaz/Widgets/widgets.dart';
+import 'package:preasy/Widgets/widgets.dart';
 
 
 class SettingScreen extends StatelessWidget {

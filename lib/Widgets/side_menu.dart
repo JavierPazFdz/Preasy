@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:preasy_javipaz/screens/screens.dart';
+import 'package:preasy/screens/screens.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({Key? key}): super(key: key);
