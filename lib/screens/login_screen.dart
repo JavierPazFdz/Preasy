@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:preasy/providers/login_form_provider.dart';
+import 'package:preasy/services/auth_service.dart';
 import 'package:preasy/ui/input_decoration.dart';
 import 'package:preasy/widgets/widgets.dart';
 import 'package:provider/provider.dart';
+
 
 
 class LoginScreen extends StatelessWidget {
@@ -119,13 +121,19 @@ class _LoginForm extends StatelessWidget {
             ),
             onPressed: loginForm.isLoging ? null : () async {
               FocusScope.of(context).unfocus();
+              final authservice = Provider.of<AuthService>(context, listen:false);
+              
               if(!loginForm.isValidForm()) return;
               loginForm.isLoging = true;
 
-              await Future.delayed(const Duration(seconds: 2));
-              loginForm.isLoging = false;
-              Navigator.pushReplacementNamed(context, 'home');
-
+              final String? errorMessage = await authservice.login(loginForm.email, loginForm.password);
+              
+              if(errorMessage==null){
+                Navigator.pushReplacementNamed(context, 'home');
+              }else{
+                print(errorMessage);
+                loginForm.isLoging = false;
+              }
             } )
         ],
       )

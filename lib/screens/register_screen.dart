@@ -121,8 +121,9 @@ class _LoginForm extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, 'home');
               }else{
                 print(errorMessage);
+                loginForm.isLoging = false;
               }
-              loginForm.isLoging = false;
+              
               //
 
             },
