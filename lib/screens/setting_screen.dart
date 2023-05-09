@@ -8,6 +8,7 @@ class SettingScreen extends StatelessWidget {
 
   const SettingScreen({Key? key}): super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +26,7 @@ class SettingScreen extends StatelessWidget {
 
               SwitchListTile.adaptive(
                   value: true,
-                  title: const Text('Dark Mode'),
+                  title: const Text('DarkMode'),
                   onChanged: (value){
                   }
               ),
