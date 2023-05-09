@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:preasy_javipaz/screens/screens.dart';
+import 'package:preasy/screens/screens.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,10 +16,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: HomeScreen.routerName,
+      initialRoute: 'login',
       routes:{
-        HomeScreen.routerName:(_)=>const HomeScreen(),
-        SettingScreen.routerName:(_)=>const SettingScreen(),
+        'login': ( _ ) => const LoginScreen(),
+        'home':(_)=>const HomeScreen(),
+        'settings':(_)=>const SettingScreen(),
+        'new_project':(_)=>const NewProjectScreen(),
+
       },
       debugShowCheckedModeBanner: false,
     );
