@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:preasy/providers/login_form_provider.dart';
+import 'package:preasy/services/services.dart';
 import 'package:preasy/ui/input_decoration.dart';
 import 'package:preasy/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -107,6 +108,24 @@ class _LoginForm extends StatelessWidget {
             disabledColor: Colors.grey,
             elevation: 0,
             color: Colors.deepPurple,
+            onPressed: loginForm.isLoging ? null : () async {
+              FocusScope.of(context).unfocus();
+              final authservice = Provider.of<AuthService>(context, listen:false);
+              
+              if(!loginForm.isValidForm()) return;
+              loginForm.isLoging = true;
+
+              final String? errorMessage = await authservice.createUser(loginForm.email, loginForm.password);
+              
+              if(errorMessage==null){
+                Navigator.pushReplacementNamed(context, 'home');
+              }else{
+                print(errorMessage);
+              }
+              loginForm.isLoging = false;
+              //
+
+            },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
               child: Text(
@@ -116,17 +135,7 @@ class _LoginForm extends StatelessWidget {
                 'Acceder',
                 style: const TextStyle(color: Colors.white),
               ),
-            ),
-            onPressed: loginForm.isLoging ? null : () async {
-              FocusScope.of(context).unfocus();
-              if(!loginForm.isValidForm()) return;
-              loginForm.isLoging = true;
-
-              await Future.delayed(const Duration(seconds: 2));
-              loginForm.isLoging = false;
-              Navigator.pushReplacementNamed(context, 'home');
-
-            } )
+            ) )
         ],
       )
       ,
