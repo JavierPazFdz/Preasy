@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes:{
         'login': ( _ ) => const LoginScreen(),
         'home':(_)=>const HomeScreen(),
+        'register':(_)=>const RegisterScreen(),
         'settings':(_)=>const SettingScreen(),
         'new_project':(_)=>const NewProjectScreen(),
 
