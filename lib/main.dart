@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:preasy/screens/screens.dart';
+import 'package:preasy/services/services.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() => runApp(AppState());
+
+class AppState extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: ( _ ) => AuthService() )
+      ],
+      child: MyApp(),
+    );
+  }
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,14 +30,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      initialRoute: 'login',
+      initialRoute: 'checking',
       routes:{
+        'checking':(_)=>const CheckAuthScreen(),
+        'home':(_)=> HomeScreen(),
         'login': ( _ ) => const LoginScreen(),
-        'home':(_)=>const HomeScreen(),
-        'settings':(_)=>const SettingScreen(),
         'new_project':(_)=>const NewProjectScreen(),
+        'register':(_)=>const RegisterScreen(),
+        'settings':(_)=>const SettingScreen(),
+
 
       },
+      scaffoldMessengerKey: NotificationsService.messengerKey,
       debugShowCheckedModeBanner: false,
     );
   }

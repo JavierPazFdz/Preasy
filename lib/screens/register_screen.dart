@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:preasy/providers/login_form_provider.dart';
-import 'package:preasy/services/auth_service.dart';
-import 'package:preasy/services/notifications_service.dart';
+import 'package:preasy/services/services.dart';
 import 'package:preasy/ui/input_decoration.dart';
 import 'package:preasy/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
 
   @override
@@ -28,7 +26,7 @@ class LoginScreen extends StatelessWidget {
                         children: [
                   
                           const SizedBox(height: 10,),
-                          Text('Login',style: Theme.of(context).textTheme.headlineMedium,),
+                          Text('Crear cuenta',style: Theme.of(context).textTheme.headlineMedium,),
                           ChangeNotifierProvider(
                             create: ( _ )=> LoginFormProvider(),
                             child: const _LoginForm())
@@ -38,14 +36,14 @@ class LoginScreen extends StatelessWidget {
                       )
                     ),
                     const SizedBox(height: 50),
-                    TextButton(onPressed: 
-                      () => Navigator.pushReplacementNamed(context, 'register'), 
-                      style: ButtonStyle(
-                        overlayColor: MaterialStateProperty.all(Colors.indigo.withOpacity(0.1)),
-                        shape: MaterialStateProperty.all(StadiumBorder())),
-                      
-                      child: const Text('Crear una nueva cuenta',style: TextStyle(fontSize: 18,  color: Colors.black87)),
-                    ),
+                      TextButton(onPressed: 
+                        () => Navigator.pushReplacementNamed(context, 'login'), 
+                        style: ButtonStyle(
+                          overlayColor: MaterialStateProperty.all(Colors.indigo.withOpacity(0.1)),
+                          shape: MaterialStateProperty.all(StadiumBorder())),
+                        
+                        child: const Text('¿Ya tienes una cuenta?',style: TextStyle(fontSize: 18,  color: Colors.black87)),
+                      ),                    
                     const SizedBox(height: 50),
                 ],
                 
@@ -117,15 +115,17 @@ class _LoginForm extends StatelessWidget {
               if(!loginForm.isValidForm()) return;
               loginForm.isLoging = true;
 
-              final String? errorMessage = await authservice.login(loginForm.email, loginForm.password);
+              final String? errorMessage = await authservice.createUser(loginForm.email, loginForm.password);
               
               if(errorMessage==null){
                 Navigator.pushReplacementNamed(context, 'home');
               }else{
                 print(errorMessage);
-                NotificationsService.showSnackbar('El Correo o la Contraseña son incorrectas');
                 loginForm.isLoging = false;
               }
+              
+              //
+
             },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
