@@ -30,15 +30,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: 'login',
+      initialRoute: 'checking',
       routes:{
+        'checking':(_)=>const CheckAuthScreen(),
+        'home':(_)=> HomeScreen(),
         'login': ( _ ) => const LoginScreen(),
-        'home':(_)=>const HomeScreen(),
+        'new_project':(_)=>const NewProjectScreen(),
         'register':(_)=>const RegisterScreen(),
         'settings':(_)=>const SettingScreen(),
-        'new_project':(_)=>const NewProjectScreen(),
+
 
       },
+      scaffoldMessengerKey: NotificationsService.messengerKey,
       debugShowCheckedModeBanner: false,
     );
   }

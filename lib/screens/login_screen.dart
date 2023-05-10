@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:preasy/providers/login_form_provider.dart';
 import 'package:preasy/services/auth_service.dart';
+import 'package:preasy/services/notifications_service.dart';
 import 'package:preasy/ui/input_decoration.dart';
 import 'package:preasy/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -109,16 +110,6 @@ class _LoginForm extends StatelessWidget {
             disabledColor: Colors.grey,
             elevation: 0,
             color: Colors.deepPurple,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-              child: Text(
-                loginForm.isLoging ?
-                'Espere....'
-                :
-                'Acceder',
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
             onPressed: loginForm.isLoging ? null : () async {
               FocusScope.of(context).unfocus();
               final authservice = Provider.of<AuthService>(context, listen:false);
@@ -132,9 +123,20 @@ class _LoginForm extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, 'home');
               }else{
                 print(errorMessage);
+                NotificationsService.showSnackbar('El Correo o la Contraseña son incorrectas');
                 loginForm.isLoging = false;
               }
-            } )
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+              child: Text(
+                loginForm.isLoging ?
+                'Espere....'
+                :
+                'Acceder',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ) )
         ],
       )
       ,
