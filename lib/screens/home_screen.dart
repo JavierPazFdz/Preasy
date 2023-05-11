@@ -12,21 +12,23 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     final authservice = Provider.of<AuthService>(context, listen:false);
 
     return Scaffold(
       appBar: AppBar(
-        
+
         title: const Text('Home'),
-        actions:<Widget> [IconButton(onPressed: () {
-          Navigator.pushReplacementNamed(context, 'new_project');
-        }, icon: Icon(Icons.add),)],
-        leading: 
-        IconButton(
+        leading: IconButton(
           icon: Icon(Icons.menu_book),
           onPressed: (){},),
         actions: <Widget>[
+          IconButton(
+          icon: Icon(Icons.abc),
+          onPressed: (){
+              authservice.logout();
+              Navigator.pushReplacementNamed(context, 'new_project');
+          } ),
           IconButton(
           icon: Icon(Icons.logout),
           onPressed: (){
@@ -35,13 +37,13 @@ class HomeScreen extends StatelessWidget {
           } ),
 
         ]
-        
-        
+
+
       ),
         body: const Center(
           child: Text('HomeScreen'),
         )
 
     );
-  
+
 }}

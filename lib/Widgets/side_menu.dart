@@ -22,16 +22,16 @@ class SideMenu extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.work_outlined),
-            title: const Text('Projectos'),
-            //Navigator.pushReplacementNamed(context, ProjectsScreen.routerName);
-            onTap: () {
+          // ListTile(
+          //   leading: const Icon(Icons.work_outlined),
+          //   title: const Text('Projectos'),
+          //   //Navigator.pushReplacementNamed(context, ProjectsScreen.routerName);
+          //   onTap: () {
 
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) =>ProjectsScreen(text: '')));
-            },
-          ),
+          //     Navigator.push(context,
+          //         MaterialPageRoute(builder: (context) =>ProjectsScreen(text: '')));
+          //   },
+          // ),
           ListTile(
             leading: const Icon(Icons.settings_rounded),
             title: const Text('Nuevo Proyecto'),
