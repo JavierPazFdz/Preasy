@@ -17,13 +17,22 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        
         title: const Text('Home'),
         leading: IconButton(
+          icon: Icon(Icons.menu_book),
+          onPressed: (){},),
+        actions: <Widget>[
+          IconButton(
           icon: Icon(Icons.logout),
           onPressed: (){
               authservice.logout();
               Navigator.pushReplacementNamed(context, 'login');
           } ),
+
+        ]
+        
+        
       ),
         body: const Center(
           child: Text('HomeScreen'),
