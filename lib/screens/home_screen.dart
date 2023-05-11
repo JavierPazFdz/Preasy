@@ -19,7 +19,11 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         
         title: const Text('Home'),
-        leading: IconButton(
+        actions:<Widget> [IconButton(onPressed: () {
+          Navigator.pushReplacementNamed(context, 'new_project');
+        }, icon: Icon(Icons.add),)],
+        leading: 
+        IconButton(
           icon: Icon(Icons.menu_book),
           onPressed: (){},),
         actions: <Widget>[
