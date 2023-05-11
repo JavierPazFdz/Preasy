@@ -42,15 +42,15 @@ class SideMenu extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => NewProjectScreen()));
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.settings_rounded),
-            title: const Text('Configuración'),
-            onTap: () {
-              //Volver a la pagina home
+          // ListTile(
+          //   leading: const Icon(Icons.settings_rounded),
+          //   title: const Text('Configuración'),
+          //   onTap: () {
+          //     //Volver a la pagina home
 
-              Navigator.pushReplacementNamed(context, SettingScreen.routerName);
-            },
-          ),
+          //     Navigator.pushReplacementNamed(context, SettingScreen.routerName);
+          //   },
+          // ),
         ],
       ),
     );

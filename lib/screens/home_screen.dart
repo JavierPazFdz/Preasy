@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:preasy/Widgets/side_menu.dart';
 import 'package:preasy/services/services.dart';
 import 'package:provider/provider.dart';
-
 
 
 class HomeScreen extends StatelessWidget {
@@ -20,11 +20,14 @@ class HomeScreen extends StatelessWidget {
 
         title: const Text('Home'),
         leading: IconButton(
-          icon: Icon(Icons.menu_book),
-          onPressed: (){},),
+          icon: Icon(Icons.menu),
+          onPressed: (){
+              drawer: const SideMenu();
+               
+          },),
         actions: <Widget>[
           IconButton(
-          icon: Icon(Icons.abc),
+          icon: Icon(Icons.add),
           onPressed: (){
               authservice.logout();
               Navigator.pushReplacementNamed(context, 'new_project');
@@ -40,6 +43,7 @@ class HomeScreen extends StatelessWidget {
 
 
       ),
+      drawer: const SideMenu(),
         body: const Center(
           child: Text('HomeScreen'),
         )
