@@ -18,7 +18,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
-        leading: IconButton(
+        actions:<Widget> [IconButton(onPressed: () {
+          Navigator.pushReplacementNamed(context, 'new_project');
+        }, icon: Icon(Icons.add),)],
+        leading: 
+        IconButton(
           icon: Icon(Icons.logout),
           onPressed: (){
               authservice.logout();
